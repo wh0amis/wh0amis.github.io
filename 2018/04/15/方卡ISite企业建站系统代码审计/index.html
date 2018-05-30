@@ -16,23 +16,23 @@
     
     
 
-    <meta name="description" content="##0x01 前言ISite企业建站系统是方卡在线独立开发的一套为公司企业量身打造的建站系统，系统维护简单，支持全站生成HTML，支持自定义文件名。 ##0x02 环境搭建ISite官网：http://www.fangka.net/程序源码：20111010下载地址：http://qy.ifangka.com/download.html ##0x03 cookie欺骗代码分析在后台目录中，所有文件">
+    <meta name="description" content="##0x01 前言ISite企业建站系统是方卡在线独立开发的一套为公司企业量身打造的建站系统，系统维护简单，支持全站生成HTML，支持自定义文件名。">
 <meta name="keywords" content="asp,代码审计">
 <meta property="og:type" content="article">
 <meta property="og:title" content="方卡ISite企业建站系统代码审计 | 拥雪待春色">
 <meta property="og:url" content="http://yoursite.com/2018/04/15/方卡ISite企业建站系统代码审计/index.html">
 <meta property="og:site_name" content="拥雪待春色">
-<meta property="og:description" content="##0x01 前言ISite企业建站系统是方卡在线独立开发的一套为公司企业量身打造的建站系统，系统维护简单，支持全站生成HTML，支持自定义文件名。 ##0x02 环境搭建ISite官网：http://www.fangka.net/程序源码：20111010下载地址：http://qy.ifangka.com/download.html ##0x03 cookie欺骗代码分析在后台目录中，所有文件">
+<meta property="og:description" content="##0x01 前言ISite企业建站系统是方卡在线独立开发的一套为公司企业量身打造的建站系统，系统维护简单，支持全站生成HTML，支持自定义文件名。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-e98eb15682a8d5c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-b116b72795ef776d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-5f9b5778c67f0704.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-c0b908c95520b3ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-35ff4d22810fe404.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-05-28T13:56:45.165Z">
+<meta property="og:updated_time" content="2018-05-30T11:31:11.309Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="方卡ISite企业建站系统代码审计 | 拥雪待春色">
-<meta name="twitter:description" content="##0x01 前言ISite企业建站系统是方卡在线独立开发的一套为公司企业量身打造的建站系统，系统维护简单，支持全站生成HTML，支持自定义文件名。 ##0x02 环境搭建ISite官网：http://www.fangka.net/程序源码：20111010下载地址：http://qy.ifangka.com/download.html ##0x03 cookie欺骗代码分析在后台目录中，所有文件">
+<meta name="twitter:description" content="##0x01 前言ISite企业建站系统是方卡在线独立开发的一套为公司企业量身打造的建站系统，系统维护简单，支持全站生成HTML，支持自定义文件名。">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1574161-e98eb15682a8d5c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
     
     
@@ -222,7 +222,7 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <p>##0x01 前言<br>ISite企业建站系统是方卡在线独立开发的一套为公司企业量身打造的建站系统，系统维护简单，支持全站生成HTML，支持自定义文件名。</p>
+    <p>##0x01 前言<br>ISite企业建站系统是方卡在线独立开发的一套为公司企业量身打造的建站系统，系统维护简单，支持全站生成HTML，支持自定义文件名。<br><a id="more"></a></p>
 <p>##0x02 环境搭建<br>ISite官网：<a href="http://www.fangka.net/" target="_blank" rel="noopener">http://www.fangka.net/</a><br>程序源码：20111010<br>下载地址：<a href="http://qy.ifangka.com/download.html" target="_blank" rel="noopener">http://qy.ifangka.com/download.html</a></p>
 <p>##0x03 cookie欺骗<br>代码分析<br>在后台目录中，所有文件都在第一行包含admincheck.asp进行权限检测。<br><img src="https://upload-images.jianshu.io/upload_images/1574161-e98eb15682a8d5c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>进一步追溯admincheck函数，在include.asp文件中<br><img src="https://upload-images.jianshu.io/upload_images/1574161-b116b72795ef776d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>继续 ，在/class/Cls_admin.asp中<br><img src="https://upload-images.jianshu.io/upload_images/1574161-5f9b5778c67f0704.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br><img src="https://upload-images.jianshu.io/upload_images/1574161-c0b908c95520b3ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>根据说明可知AdminCheck函数先进行登录检测，在进行其余权限检测。且179行以及217行通过判断cookie是否为空，如果不为则进行下一步。这就造成了我们可以在本地添加cookie从而绕过权限判断。<br><img src="https://upload-images.jianshu.io/upload_images/1574161-35ff4d22810fe404.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>由上述可知，第一步先传入CheckType=1判断是否登录，在传入CheckType=2进行二次检测。最后传入CheckType=3判断是否具有页面权限。因此我们在本地添加相应的cookie值即可绕过判断。</p>
