@@ -16,13 +16,13 @@
     
     
 
-    <meta name="description" content="####0x01 前言  在某次渗透测试过程中遇到了一套C#源码。遂对该源码进行了一些简单的代码审计，发现了一些问题。代码非常简单清楚，非常适合我这种小白审计。于是拿出来写一写。     所使用的一些工具：     ILSPY (用来反编译DLL文件的)     Sublime Text3(让代码阅读起来更方便)     C#在线编译：https://c.runoob.com/compile/14">
+    <meta name="description" content="####0x01 前言  在某次渗透测试过程中遇到了一套C#源码。遂对该源码进行了一些简单的代码审计，发现了一些问题。代码非常简单清楚，非常适合我这种小白审计。于是拿出来写一写。">
 <meta name="keywords" content="代码审计">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记某次渗透过程中的.NET代码审计 | 拥雪待春色">
 <meta property="og:url" content="http://yoursite.com/2018/10/17/audit_net/index.html">
 <meta property="og:site_name" content="拥雪待春色">
-<meta property="og:description" content="####0x01 前言  在某次渗透测试过程中遇到了一套C#源码。遂对该源码进行了一些简单的代码审计，发现了一些问题。代码非常简单清楚，非常适合我这种小白审计。于是拿出来写一写。     所使用的一些工具：     ILSPY (用来反编译DLL文件的)     Sublime Text3(让代码阅读起来更方便)     C#在线编译：https://c.runoob.com/compile/14">
+<meta property="og:description" content="####0x01 前言  在某次渗透测试过程中遇到了一套C#源码。遂对该源码进行了一些简单的代码审计，发现了一些问题。代码非常简单清楚，非常适合我这种小白审计。于是拿出来写一写。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-ce8455a07f563e9d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-d6c1ee51690267d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -31,10 +31,10 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-e67301faaac98866.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-727c744a93e5f649.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-4cc7293978a42953.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-10-17T03:29:55.472Z">
+<meta property="og:updated_time" content="2018-10-17T03:37:41.309Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记某次渗透过程中的.NET代码审计 | 拥雪待春色">
-<meta name="twitter:description" content="####0x01 前言  在某次渗透测试过程中遇到了一套C#源码。遂对该源码进行了一些简单的代码审计，发现了一些问题。代码非常简单清楚，非常适合我这种小白审计。于是拿出来写一写。     所使用的一些工具：     ILSPY (用来反编译DLL文件的)     Sublime Text3(让代码阅读起来更方便)     C#在线编译：https://c.runoob.com/compile/14">
+<meta name="twitter:description" content="####0x01 前言  在某次渗透测试过程中遇到了一套C#源码。遂对该源码进行了一些简单的代码审计，发现了一些问题。代码非常简单清楚，非常适合我这种小白审计。于是拿出来写一写。">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1574161-ce8455a07f563e9d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
     
     
@@ -226,7 +226,7 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <p>####0x01 前言<br>  在某次渗透测试过程中遇到了一套C#源码。遂对该源码进行了一些简单的代码审计，发现了一些问题。代码非常简单清楚，非常适合我这种小白审计。于是拿出来写一写。<br>     所使用的一些工具：<br>     ILSPY (用来反编译DLL文件的)<br>     Sublime Text3(让代码阅读起来更方便)<br>     C#在线编译：<a href="https://c.runoob.com/compile/14（在线跑一些DEMO）" target="_blank" rel="noopener">https://c.runoob.com/compile/14（在线跑一些DEMO）</a></p>
+    <p>####0x01 前言<br>  在某次渗透测试过程中遇到了一套C#源码。遂对该源码进行了一些简单的代码审计，发现了一些问题。代码非常简单清楚，非常适合我这种小白审计。于是拿出来写一写。<br>     <a id="more"></a><br>     所使用的一些工具：<br>     ILSPY (用来反编译DLL文件的)<br>     Sublime Text3(让代码阅读起来更方便)<br>     C#在线编译：<a href="https://c.runoob.com/compile/14（在线跑一些DEMO）" target="_blank" rel="noopener">https://c.runoob.com/compile/14（在线跑一些DEMO）</a></p>
 <p>####0x02 代码初览<br>由于代码是从别的地方脱下来的，所以没数据库，只能看代码然后在目标网站测试了。先看看代码结构根据inherits属性找到当前 Web 窗体所继承的代码隐藏类，即bin目录下的App_Web_vr0aluvs.dll文件。<br><img src="https://upload-images.jianshu.io/upload_images/1574161-ce8455a07f563e9d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br><img src="https://upload-images.jianshu.io/upload_images/1574161-d6c1ee51690267d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>用ILSPY打开，即可找到相关代码。<br><img src="https://upload-images.jianshu.io/upload_images/1574161-9836aea8bdc55d76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>###0x03 SQL注入<br>两个参数均未过滤，直接拼接进语句。然后入库查询<br><img src="https://upload-images.jianshu.io/upload_images/1574161-272a50a312ee13d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"><br>但该页面存在鉴权。要求用户登录以后才能进行操作。爆破了一些常见的账号并不行。于是看看其他能直接访问到的页面。<br>在注册代理页面中，如图所示两个SQL语句都直接拼接了相关变量。第二条SQL很明显就可以变量可控。直接注入即可。第一条朔源追查一下相关变量。<br> <img src="https://upload-images.jianshu.io/upload_images/1574161-e67301faaac98866.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>只判断了QID是否为空，QID可控。于是第一条SQL也是可以利用的。<br><img src="https://upload-images.jianshu.io/upload_images/1574161-727c744a93e5f649.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br> 但是两个利用点都无法回显数据，只能利用时间盲注。还有一个问题就是在注入过程中需要对保证每次请求过程中ID参数不一样。如果利用SqlMap跑数据的话可以使用-randomize参数</p>
 <p>######python sqlmap.py -r post.txt –randomize=id –dbs</p>
