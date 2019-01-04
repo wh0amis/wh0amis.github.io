@@ -16,13 +16,13 @@
     
     
 
-    <meta name="description" content="###0x01 背景最近在做测试的时候遇到一个阉割版的phpcms，权限也很低。尝试网上的常规getshell手法无果，忽然想起16年和大佬一起挖过PhpCms_v9后台的getshell，但是过去这么久细节也记不清了。只记得大概方向。遂上官网下载了最新版本的源码审计一番。版本信息： ###0x02 代码执行后台Getshell最方便的还是代码执行，先上Seay大佬的代码审计工具搜索一下。寻找存在">
+    <meta name="description" content="###0x01 背景最近在做测试的时候遇到一个阉割版的phpcms，权限也很低。尝试网上的常规getshell手法无果，忽然想起16年和大佬一起挖过PhpCms_v9后台的getshell，但是过去这么久细节也记不清了。只记得大概方向。遂上官网下载了最新版本的源码审计一番。">
 <meta name="keywords" content="代码审计">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PhpCmsV9后台GetShell | 拥雪待春色">
 <meta property="og:url" content="http://yoursite.com/2019/01/01/PhpCms_GetShell/index.html">
 <meta property="og:site_name" content="拥雪待春色">
-<meta property="og:description" content="###0x01 背景最近在做测试的时候遇到一个阉割版的phpcms，权限也很低。尝试网上的常规getshell手法无果，忽然想起16年和大佬一起挖过PhpCms_v9后台的getshell，但是过去这么久细节也记不清了。只记得大概方向。遂上官网下载了最新版本的源码审计一番。版本信息： ###0x02 代码执行后台Getshell最方便的还是代码执行，先上Seay大佬的代码审计工具搜索一下。寻找存在">
+<meta property="og:description" content="###0x01 背景最近在做测试的时候遇到一个阉割版的phpcms，权限也很低。尝试网上的常规getshell手法无果，忽然想起16年和大佬一起挖过PhpCms_v9后台的getshell，但是过去这么久细节也记不清了。只记得大概方向。遂上官网下载了最新版本的源码审计一番。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-5e01edf142a9a8db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-17fc6e6085af99ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -31,10 +31,10 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-21b66602da7d6afe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-d91ec89168cf0a4e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-58d9ab068264d78c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800">
-<meta property="og:updated_time" content="2019-01-04T08:14:53.230Z">
+<meta property="og:updated_time" content="2019-01-04T08:21:07.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PhpCmsV9后台GetShell | 拥雪待春色">
-<meta name="twitter:description" content="###0x01 背景最近在做测试的时候遇到一个阉割版的phpcms，权限也很低。尝试网上的常规getshell手法无果，忽然想起16年和大佬一起挖过PhpCms_v9后台的getshell，但是过去这么久细节也记不清了。只记得大概方向。遂上官网下载了最新版本的源码审计一番。版本信息： ###0x02 代码执行后台Getshell最方便的还是代码执行，先上Seay大佬的代码审计工具搜索一下。寻找存在">
+<meta name="twitter:description" content="###0x01 背景最近在做测试的时候遇到一个阉割版的phpcms，权限也很低。尝试网上的常规getshell手法无果，忽然想起16年和大佬一起挖过PhpCms_v9后台的getshell，但是过去这么久细节也记不清了。只记得大概方向。遂上官网下载了最新版本的源码审计一番。">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1574161-5e01edf142a9a8db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
     
     
@@ -226,7 +226,7 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <p>###0x01 背景<br>最近在做测试的时候遇到一个阉割版的phpcms，权限也很低。尝试网上的常规getshell手法无果，忽然想起16年和大佬一起挖过PhpCms_v9后台的getshell，但是过去这么久细节也记不清了。只记得大概方向。遂上官网下载了最新版本的源码审计一番。<br>版本信息：<br><img src="https://upload-images.jianshu.io/upload_images/1574161-5e01edf142a9a8db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+    <p>###0x01 背景<br>最近在做测试的时候遇到一个阉割版的phpcms，权限也很低。尝试网上的常规getshell手法无果，忽然想起16年和大佬一起挖过PhpCms_v9后台的getshell，但是过去这么久细节也记不清了。只记得大概方向。遂上官网下载了最新版本的源码审计一番。<br><a id="more"></a><br>版本信息：<br><img src="https://upload-images.jianshu.io/upload_images/1574161-5e01edf142a9a8db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>###0x02 代码执行<br>后台Getshell最方便的还是代码执行，先上Seay大佬的代码审计工具搜索一下。寻找存在代码执行的位置在/phpcms/libs/functions/global.func.php第289-302行发现string2array()这个函数存在eval()。于是我们寻找一下那些位置调用了这个函数。<br><img src="https://upload-images.jianshu.io/upload_images/1574161-17fc6e6085af99ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br> 在/phpcms/modules/admin/site.php第169存在调用，但是$data变量的内容是从数据库来得，我们得找个地方将数据插入到数据表里去.<br><img src="https://upload-images.jianshu.io/upload_images/1574161-9d1cca0ddf89e984.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>###0x03 Getshell<br>在后台模块-数据源中可以自定义我们的SQL，从而导致我们可以将恶意构造的数据插入到数据表去，然后进行利用getshell。具体步骤为 模块-&gt;数据源-&gt;添加数据源-&gt;自定义SQL ，然后插入我们的SQL，最后访问执行，这里提供可触发上述漏洞的SQL语句：</p>
 <blockquote>
