@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      PhpCmsV9后台GetShell | 拥雪待春色 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="John Doe">
+    
+    
+
+    <meta name="description" content="###0x01 背景最近在做测试的时候遇到一个阉割版的phpcms，权限也很低。尝试网上的常规getshell手法无果，忽然想起16年和大佬一起挖过PhpCms_v9后台的getshell，但是过去这么久细节也记不清了。只记得大概方向。遂上官网下载了最新版本的源码审计一番。版本信息： ###0x02 代码执行后台Getshell最方便的还是代码执行，先上Seay大佬的代码审计工具搜索一下。寻找存在">
+<meta name="keywords" content="代码审计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PhpCmsV9后台GetShell | 拥雪待春色">
+<meta property="og:url" content="http://yoursite.com/2019/01/01/PhpCms_GetShell/index.html">
+<meta property="og:site_name" content="拥雪待春色">
+<meta property="og:description" content="###0x01 背景最近在做测试的时候遇到一个阉割版的phpcms，权限也很低。尝试网上的常规getshell手法无果，忽然想起16年和大佬一起挖过PhpCms_v9后台的getshell，但是过去这么久细节也记不清了。只记得大概方向。遂上官网下载了最新版本的源码审计一番。版本信息： ###0x02 代码执行后台Getshell最方便的还是代码执行，先上Seay大佬的代码审计工具搜索一下。寻找存在">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-5e01edf142a9a8db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-17fc6e6085af99ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-9d1cca0ddf89e984.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-7a8dada7782679ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-21b66602da7d6afe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-d91ec89168cf0a4e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-58d9ab068264d78c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800">
+<meta property="og:updated_time" content="2019-01-04T08:14:53.230Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PhpCmsV9后台GetShell | 拥雪待春色">
+<meta name="twitter:description" content="###0x01 背景最近在做测试的时候遇到一个阉割版的phpcms，权限也很低。尝试网上的常规getshell手法无果，忽然想起16年和大佬一起挖过PhpCms_v9后台的getshell，但是过去这么久细节也记不清了。只记得大概方向。遂上官网下载了最新版本的源码审计一番。版本信息： ###0x02 代码执行后台Getshell最方便的还是代码执行，先上Seay大佬的代码审计工具搜索一下。寻找存在">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1574161-5e01edf142a9a8db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for 拥雪待春色"><img src="/images/avatar.png" width="80" alt="拥雪待春色 logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">拥雪待春色</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/wh0amis" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">PhpCmsV9后台GetShell</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2019-01-01" class="post-meta__date date">2019-01-01</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/代码审计/">代码审计</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>###0x01 背景<br>最近在做测试的时候遇到一个阉割版的phpcms，权限也很低。尝试网上的常规getshell手法无果，忽然想起16年和大佬一起挖过PhpCms_v9后台的getshell，但是过去这么久细节也记不清了。只记得大概方向。遂上官网下载了最新版本的源码审计一番。<br>版本信息：<br><img src="https://upload-images.jianshu.io/upload_images/1574161-5e01edf142a9a8db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>###0x02 代码执行<br>后台Getshell最方便的还是代码执行，先上Seay大佬的代码审计工具搜索一下。寻找存在代码执行的位置在/phpcms/libs/functions/global.func.php第289-302行发现string2array()这个函数存在eval()。于是我们寻找一下那些位置调用了这个函数。<br><img src="https://upload-images.jianshu.io/upload_images/1574161-17fc6e6085af99ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br> 在/phpcms/modules/admin/site.php第169存在调用，但是$data变量的内容是从数据库来得，我们得找个地方将数据插入到数据表里去.<br><img src="https://upload-images.jianshu.io/upload_images/1574161-9d1cca0ddf89e984.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>###0x03 Getshell<br>在后台模块-数据源中可以自定义我们的SQL，从而导致我们可以将恶意构造的数据插入到数据表去，然后进行利用getshell。具体步骤为 模块-&gt;数据源-&gt;添加数据源-&gt;自定义SQL ，然后插入我们的SQL，最后访问执行，这里提供可触发上述漏洞的SQL语句：</p>
+<blockquote>
+<p>UPDATE v9_site SET setting=’array();phpinfo();’ WHERE siteid=’1’</p>
+</blockquote>
+<p>如图所示:<br><img src="https://upload-images.jianshu.io/upload_images/1574161-7a8dada7782679ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800" alt=""><br>访问调用代码下方的URL地址<br><img src="https://upload-images.jianshu.io/upload_images/1574161-21b66602da7d6afe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800" alt=""><br>访问调用代码之后再回到系统设置，点击站点管理，点击修改即可Getshell<br><img src="https://upload-images.jianshu.io/upload_images/1574161-d91ec89168cf0a4e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800" alt=""><br><img src="https://upload-images.jianshu.io/upload_images/1574161-58d9ab068264d78c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800" alt=""></p>
+<p>###0x03 后言<br>通过全局搜索可以发现系统多处都调用了string2array()这个函数，所以在后台通过string2array这个函数来拿shell还是很简单的。</p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273829933'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/stat.php%3Fid%3D1273829933%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
