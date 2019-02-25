@@ -24,7 +24,7 @@
 <meta property="og:site_name" content="拥雪待春色">
 <meta property="og:description" content="#本文提供了一些日常工作中发现的一些常见漏洞的整改建议及措施。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-25T07:51:34.948Z">
+<meta property="og:updated_time" content="2019-02-25T08:02:56.296Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见漏洞整改建议(长期更新) | 拥雪待春色">
 <meta name="twitter:description" content="#本文提供了一些日常工作中发现的一些常见漏洞的整改建议及措施。">
@@ -226,7 +226,7 @@ classes that you can use:
 <li>定义允许的行为,确保Web应用程序根据预期结果的严格定义来验证所有输入参数 (Cookie, 标头, 查询字符串、 表单、 隐藏字段等)。</li>
 <li>检查POST和GET请求的响应,以确保返回的对象是预期的内容且有效。</li>
 <li>通过对用户提供的数据进行编码,从用户输入中移除冲突的字符、括号和单双引号。 这将防止插入的脚本以可执行的格式发送给最终用户。</li>
-<li>只要可能,就应将客户端提供的所有数据限制为字母数字数据。使用此过滤机制时, 如果用户输入数据为 <script>alertdocumentcookie(‘aaa’)</scrip>, 将缩为 scriptalertdocumentcookiescript. 如果必须使用非字母数字字符, 请先将其编码为 HTML 实体, 然后再将其用在 HTTP 响应中, 这样就无法将它们用于修改HTML 文档的结构。</li>
+<li>只要可能,就应将客户端提供的所有数据限制为字母数字数据。使用此过滤机制时, 如果用户输入数据为 &lt;script&gt;alert(document.cookie)&lt;/scrip&gt;, 将缩为 scriptalertdocumentcookiescript. 如果必须使用非字母数字字符, 请先将其编码为 HTML 实体, 然后再将其用在 HTTP 响应中, 这样就无法将它们用于修改HTML 文档的结构。</li>
 <li>使用双因素客户身份验证机制, 而非单因素身份验证。</li>
 <li>在修改或使用脚本之前, 验证脚本的来源。</li>
 <li>不要完全信任其他人提供的脚本并用在自己的代码中(不论是从Web上下载的, 还是熟人提供的)。</li>
@@ -274,7 +274,7 @@ classes that you can use:
 <li>设置文件目录权限，禁止执行权限。</li>
 <li>对上传后的文件统一随机命名，不允许用户控制扩展名</li>
 </ul>
-</script></li></ul>
+
   </section>
 
   <section class="post-comments">
