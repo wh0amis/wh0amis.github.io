@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    
-
-    <title>
-      我爬取了空间说说，看看成长中的自己在说什么？ | 拥雪待春色 
-    </title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    
-      <meta name="author" content="John Doe">
-    
-    
-
-    <meta name="description" content="##0x01 分析　　先分析QQ空间说说页面，确定我们要爬取的内容，我要爬取的是说说内容。由于QQ空间用户巨大，不可能采用静态输出内容，很有可能是通过接口获取用户说说信息然后进行渲染输出。为了验证我们的猜想我们看下网络请求。">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>我爬取了空间说说，看看成长中的自己在说什么？ | 拥雪待春色</title>
+  <meta name="description" content="##0x01 分析　　先分析QQ空间说说页面，确定我们要爬取的内容，我要爬取的是说说内容。由于QQ空间用户巨大，不可能采用静态输出内容，很有可能是通过接口获取用户说说信息然后进行渲染输出。为了验证我们的猜想我们看下网络请求。">
 <meta name="keywords" content="爬虫">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我爬取了空间说说，看看成长中的自己在说什么？ | 拥雪待春色">
+<meta property="og:title" content="我爬取了空间说说，看看成长中的自己在说什么？">
 <meta property="og:url" content="http://yoursite.com/2018/05/31/python-QQ/index.html">
 <meta property="og:site_name" content="拥雪待春色">
 <meta property="og:description" content="##0x01 分析　　先分析QQ空间说说页面，确定我们要爬取的内容，我要爬取的是说说内容。由于QQ空间用户巨大，不可能采用静态输出内容，很有可能是通过接口获取用户说说信息然后进行渲染输出。为了验证我们的猜想我们看下网络请求。">
@@ -31,200 +33,296 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-35a87b36ec590245.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:updated_time" content="2018-05-31T09:57:35.487Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我爬取了空间说说，看看成长中的自己在说什么？ | 拥雪待春色">
+<meta name="twitter:title" content="我爬取了空间说说，看看成长中的自己在说什么？">
 <meta name="twitter:description" content="##0x01 分析　　先分析QQ空间说说页面，确定我们要爬取的内容，我要爬取的是说说内容。由于QQ空间用户巨大，不可能采用静态输出内容，很有可能是通过接口获取用户说说信息然后进行渲染输出。为了验证我们的猜想我们看下网络请求。">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1574161-2e1ebd10812bb85f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-    
-    
-    
-      <link rel="icon" type="image/x-icon" href="/favicon.png">
-    
-    <link rel="stylesheet" href="/css/uno.css">
-    <link rel="stylesheet" href="/css/highlight.css">
-    <link rel="stylesheet" href="/css/archive.css">
-    <link rel="stylesheet" href="/css/china-social-icon.css">
-
-</head>
-<body>
-
-    <span class="mobile btn-mobile-menu">
-        <i class="icon icon-list btn-mobile-menu__icon"></i>
-        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
-    </span>
-
-    
-
-<header class="panel-cover panel-cover--collapsed">
-
-
-  <div class="panel-main">
-
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2018/05/31/python-QQ/index.html">
   
-    <div class="panel-main__inner panel-inverted">
-    <div class="panel-main__content">
-
-        
-        <a href="/" title="link to homepage for 拥雪待春色"><img src="/images/avatar.png" width="80" alt="拥雪待春色 logo" class="panel-cover__logo logo" /></a>
-        
-
-        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">拥雪待春色</a></h1>
-        <hr class="panel-cover__divider" />
-
-        
-
-        <div class="navigation-wrapper">
-
-          <nav class="cover-navigation cover-navigation--primary">
-            <ul class="navigation">
-
-              
-                
-                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
-              
-                
-                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
-              
-                
-                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
-              
-
-            </ul>
-          </nav>
-
-          <!-- ----------------------------
-To add a new social icon simply duplicate one of the list items from below
-and change the class in the <i> tag to match the desired social network
-and then add your link to the <a>. Here is a full list of social network
-classes that you can use:
-
-    icon-social-500px
-    icon-social-behance
-    icon-social-delicious
-    icon-social-designer-news
-    icon-social-deviant-art
-    icon-social-digg
-    icon-social-dribbble
-    icon-social-facebook
-    icon-social-flickr
-    icon-social-forrst
-    icon-social-foursquare
-    icon-social-github
-    icon-social-google-plus
-    icon-social-hi5
-    icon-social-instagram
-    icon-social-lastfm
-    icon-social-linkedin
-    icon-social-medium
-    icon-social-myspace
-    icon-social-path
-    icon-social-pinterest
-    icon-social-rdio
-    icon-social-reddit
-    icon-social-skype
-    icon-social-spotify
-    icon-social-stack-overflow
-    icon-social-steam
-    icon-social-stumbleupon
-    icon-social-treehouse
-    icon-social-tumblr
-    icon-social-twitter
-    icon-social-vimeo
-    icon-social-xbox
-    icon-social-yelp
-    icon-social-youtube
-    icon-social-zerply
-    icon-mail
-
--------------------------------->
-
-<!-- add social info here -->
+    <link rel="alternate" href="/atom.xml" title="拥雪待春色" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
 
 
-
-<nav class="cover-navigation navigation--social">
-  <ul class="navigation">
-
-    
-      <!-- Github -->
-      <li class="navigation__item">
-        <a href="https://github.com/wh0amis" title="Huno on GitHub">
-          <i class='icon icon-social-github'></i>
-          <span class="label">GitHub</span>
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/wh0amis" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
         </a>
-      </li>
-    
-
-    <!-- China social icon -->
-    <!--
-    
-      <li class="navigation__item">
-        <a href="" title="">
-          <i class='icon cs-icon-douban'></i>
-          <span class="label">Douban</span>
-        </a>
-      </li>
-
-      <li class="navigation__item">
-        <a href="" title="">
-          <i class='icon cs-icon-weibo'></i>
-          <span class="label">Weibo</span>
-        </a>
-      </li>
-
-    -->
-
-
-
-  </ul>
-</nav>
-
-
-
-        </div>
-
+        <h2 id="name" class="hidden-xs hidden-sm"></h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Rookie Information Security Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> ChengDu, China</small>
       </div>
+      
+      <div class="search" id="search-form-wrap">
 
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
     </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
 
-    <div class="panel-cover--overlay"></div>
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/wh0amis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
   </div>
 </header>
 
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner entry">
-            
-
-<article class="post-container post-container--single">
-
-  <header class="post-header">
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
     
-    <h1 class="post-title">我爬取了空间说说，看看成长中的自己在说什么？</h1>
-
-    
-
-    <div class="post-meta">
-      <time datetime="2018-05-31" class="post-meta__date date">2018-05-31</time> 
-
-      <span class="post-meta__tags tags">
-
-          
-
-          
-             &#8226; 标签:
-            <font class="tags">
-              <a class="tags-link" href="/tags/爬虫/">爬虫</a>
-            </font>
-          
-
-      </span>
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
     </div>
-    
-    
+</div>
 
-  </header>
+    
+      
 
-  <section id="post-content" class="article-content post">
-    <p>##0x01 分析<br>　　先分析QQ空间说说页面，确定我们要爬取的内容，我要爬取的是说说内容。由于QQ空间用户巨大，不可能采用静态输出内容，很有可能是通过接口获取用户说说信息然后进行渲染输出。为了验证我们的猜想我们看下网络请求。<br><a id="more"></a><br><img src="https://upload-images.jianshu.io/upload_images/1574161-2e1ebd10812bb85f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1.png"><br><img src="https://upload-images.jianshu.io/upload_images/1574161-fd9b5863d7fc4e2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/asp-代码审计/">asp,代码审计</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码审计/">代码审计</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/效率/">效率</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/旅行/">旅行</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/注入/">注入</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/漏洞/">漏洞</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/漏洞-命令执行/">漏洞,命令执行</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/解密-工具/">解密,工具</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/asp-代码审计/" style="font-size: 13px;">asp,代码审计</a> <a href="/tags/代码审计/" style="font-size: 14px;">代码审计</a> <a href="/tags/效率/" style="font-size: 13px;">效率</a> <a href="/tags/旅行/" style="font-size: 13px;">旅行</a> <a href="/tags/注入/" style="font-size: 13px;">注入</a> <a href="/tags/漏洞/" style="font-size: 13px;">漏洞</a> <a href="/tags/漏洞-命令执行/" style="font-size: 13px;">漏洞,命令执行</a> <a href="/tags/爬虫/" style="font-size: 13px;">爬虫</a> <a href="/tags/解密-工具/" style="font-size: 13px;">解密,工具</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/07/29/FastJson漏洞复现测试/" class="title">FastJson漏洞复现测试</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-07-29T09:30:21.000Z" itemprop="datePublished">2019-07-29</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/07/23/Druid数据库连接池字符串解密/" class="title">Druid数据库连接池字符串解密Druid</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-07-23T09:14:41.000Z" itemprop="datePublished">2019-07-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/01/26/常见漏洞整改建议/" class="title">常见漏洞整改建议(长期更新)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-01-26T12:30:12.000Z" itemprop="datePublished">2019-01-26</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/01/01/PhpCms_GetShell/" class="title">PhpCmsV9后台GetShell</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-01-01T08:20:55.000Z" itemprop="datePublished">2019-01-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2018/11/30/miaozan_authkey/" class="title">对某PHP开源系统的一次粗略审计</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-11-30T02:06:55.000Z" itemprop="datePublished">2018-11-30</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-python-QQ" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      我爬取了空间说说，看看成长中的自己在说什么？
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2018/05/31/python-QQ/" class="article-date">
+	  <time datetime="2018-05-31T09:09:55.000Z" itemprop="datePublished">2018-05-31</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/爬虫/">爬虫</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/05/31/python-QQ/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>##0x01 分析<br>　　先分析QQ空间说说页面，确定我们要爬取的内容，我要爬取的是说说内容。由于QQ空间用户巨大，不可能采用静态输出内容，很有可能是通过接口获取用户说说信息然后进行渲染输出。为了验证我们的猜想我们看下网络请求。<br><a id="more"></a><br><img src="https://upload-images.jianshu.io/upload_images/1574161-2e1ebd10812bb85f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1.png"><br><img src="https://upload-images.jianshu.io/upload_images/1574161-fd9b5863d7fc4e2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
 <p>##0x02 数据爬取<br>可以确定该接口即为说说接口，有了接口剩下的就好操作了，直接撸代码爬数据。接口返回的数据是JSON格式，直接解析就OK。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="comment">#from urlparse import urljoin</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> codecs</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding( <span class="string">"utf-8"</span> )</span><br><span class="line"></span><br><span class="line">csv_file = file(<span class="string">"rent.csv"</span>,<span class="string">"ab+"</span>) <span class="comment">#打开rent.csv</span></span><br><span class="line">csv_file.write(codecs.BOM_UTF8)</span><br><span class="line">csv_writer = csv.writer(csv_file, delimiter=<span class="string">','</span>) <span class="comment"># 创建writer对象，指定文件与分隔符</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_cookie</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'cookie.txt'</span>,<span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        cookies=&#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> f.read().split(<span class="string">';'</span>):</span><br><span class="line">            name,value=line.strip().split(<span class="string">'='</span>,<span class="number">1</span>)  <span class="comment">#1代表只分割一次</span></span><br><span class="line">            cookies[name]=value </span><br><span class="line">        <span class="keyword">return</span> cookies</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_row</span><span class="params">(i)</span>:</span></span><br><span class="line">	url = <span class="string">"https://h5.qzone.qq.com/proxy/domain/taotao.qq.com/cgi-bin/emotion_cgi_msglist_v6?uin=1056680519&amp;inCharset=utf-8&amp;outCharset=utf-8&amp;hostUin=1056680519&amp;notice=0&amp;sort=0&amp;pos=&#123;pos&#125;&amp;num=20&amp;cgi_host=http%3A%2F%2Ftaotao.qq.com%2Fcgi-bin%2Femotion_cgi_msglist_v6&amp;code_version=1&amp;format=jsonp&amp;need_private_comment=1&amp;g_tk=1835140580&amp;qzonetoken=79638c17978916ad05939c80583e2478e6b640717a4063ed5d0c6b4d5156fad804db82c1518aad5ff4"</span></span><br><span class="line">	response = requests.get(url.format(pos=i),cookies=get_cookie())  <span class="comment"># 抓取目标页面</span></span><br><span class="line">	text = json.loads(response.text[<span class="number">10</span>:<span class="number">-2</span>])</span><br><span class="line">	max = len(text[<span class="string">"msglist"</span>])</span><br><span class="line">	<span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">0</span>,max):</span><br><span class="line">		conlist = text[<span class="string">"msglist"</span>][x][<span class="string">"conlist"</span>]</span><br><span class="line">		created_time = text[<span class="string">"msglist"</span>][x][<span class="string">"created_time"</span>]</span><br><span class="line">		cmtnum = text[<span class="string">"msglist"</span>][x][<span class="string">"cmtnum"</span>]</span><br><span class="line">		time_local = time.localtime(created_time)</span><br><span class="line">		dt = time.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>,time_local)</span><br><span class="line">		<span class="keyword">if</span> <span class="keyword">not</span> conlist:</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		con = re.search(<span class="string">"(?&lt;=con': u')(.+?)(?='&#125;)"</span>,str(conlist))</span><br><span class="line">		<span class="keyword">if</span> <span class="keyword">not</span> con:</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		<span class="keyword">print</span> con.group().decode(<span class="string">'unicode_escape'</span>)</span><br><span class="line">		csv_writer.writerow([con.group().decode(<span class="string">'unicode_escape'</span>),dt,cmtnum])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">	i = <span class="number">-20</span>;</span><br><span class="line">	<span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">		i += <span class="number">20</span></span><br><span class="line">		get_row(i)</span><br><span class="line">		<span class="keyword">print</span> i</span><br><span class="line">		<span class="keyword">if</span> i &gt;=<span class="number">2740</span>:</span><br><span class="line">			<span class="keyword">break</span></span><br></pre></td></tr></table></figure></p>
 <p>将url更换成自己抓取到的地址，需要注意内部包含一个{pos},另外在根目录下建立一个cookie.txt文件，将cookie写进去。然后就可以愉快的采集数据了。<br><img src="https://upload-images.jianshu.io/upload_images/1574161-6773b33a0f44b61a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"><br>跑完以后会在根目录下生成一个rent.csv的文件。里面就是采集下来的数据。</p>
 <p>##0x03 制作云图</p>
@@ -239,63 +337,230 @@ classes that you can use:
 我喝过无数的励志鸡汤、但也会对世界产生不安。
 我有过孤独的时候，但也看过了很多风景。</code><br>看来人啊，总是在成长啊。</p>
 
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2018/05/31/python-QQ/" title="我爬取了空间说说，看看成长中的自己在说什么？" target="_blank" rel="external">http://yoursite.com/2018/05/31/python-QQ/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/wh0amis" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/wh0amis" target="_blank"><span class="text-dark"></span><small class="ml-1x">Rookie Information Security Engineer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
   </section>
 
-  <section class="post-comments">
 
-    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
     
-</section>
-
-
-</article>
-
-
-            <footer class="footer">
-
-    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    <li class="prev">
+      <a href="/2018/10/17/audit_net/" title="记某次渗透过程中的.NET代码审计"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
     
-</footer>
+    
+    <li class="next">
+      <a href="/2018/05/18/huweisheng-login/" title="护卫神主机大师未授权提权漏洞"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/wh0amis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
         </div>
     </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+<!-- 防盗链 -->
+var link = "" ;
+// 遍历所有的img标签
+$("img").each( (i,o) => {
+	var o = $(o);
+    // 判断图片的链接是否包含sinaimg关键字
+	if( o.attr("src").indexOf("jianshu") > 0 ){
+        // 给这个标签加上referrerPlicy属性
+		o.attr("referrerpolicy","no-referrer");
+        // 备份图片的src
+		link = o.attr("src");
+        // 重新设置src，让页面重新加载一次图片
+		o.attr("src",link);
+	}
+});
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
 
-    <!-- js files -->
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/scale.fix.js"></script>
-    
-
-    
-
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript"> 
-        $(document).ready(function(){
-            MathJax.Hub.Config({ 
-                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
-            });
-        });
-    </script>
-
-
-    
-
-    <script src="/js/awesome-toc.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $.awesome_toc({
-                overlay: true,
-                contentId: "post-content",
-            });
-        });
-    </script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
 
 
-    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273829933'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/stat.php%3Fid%3D1273829933%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+
+
+   
+
+
+
+
+   
     
-    <!--kill ie6 -->
-<!--[if IE 6]>
-  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
-<![endif]-->
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
 
 </body>
 </html>

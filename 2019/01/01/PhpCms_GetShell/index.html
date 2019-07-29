@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    
-
-    <title>
-      PhpCmsV9后台GetShell | 拥雪待春色 
-    </title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    
-      <meta name="author" content="John Doe">
-    
-    
-
-    <meta name="description" content="###0x01 背景最近在做测试的时候遇到一个阉割版的phpcms，权限也很低。尝试网上的常规getshell手法无果，忽然想起16年和大佬一起挖过PhpCms_v9后台的getshell，但是过去这么久细节也记不清了。只记得大概方向。遂上官网下载了最新版本的源码审计一番。">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>PhpCmsV9后台GetShell | 拥雪待春色</title>
+  <meta name="description" content="###0x01 背景最近在做测试的时候遇到一个阉割版的phpcms，权限也很低。尝试网上的常规getshell手法无果，忽然想起16年和大佬一起挖过PhpCms_v9后台的getshell，但是过去这么久细节也记不清了。只记得大概方向。遂上官网下载了最新版本的源码审计一番。">
 <meta name="keywords" content="代码审计">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PhpCmsV9后台GetShell | 拥雪待春色">
+<meta property="og:title" content="PhpCmsV9后台GetShell">
 <meta property="og:url" content="http://yoursite.com/2019/01/01/PhpCms_GetShell/index.html">
 <meta property="og:site_name" content="拥雪待春色">
 <meta property="og:description" content="###0x01 背景最近在做测试的时候遇到一个阉割版的phpcms，权限也很低。尝试网上的常规getshell手法无果，忽然想起16年和大佬一起挖过PhpCms_v9后台的getshell，但是过去这么久细节也记不清了。只记得大概方向。遂上官网下载了最新版本的源码审计一番。">
@@ -33,200 +35,296 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1574161-58d9ab068264d78c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800">
 <meta property="og:updated_time" content="2019-01-04T08:21:07.544Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PhpCmsV9后台GetShell | 拥雪待春色">
+<meta name="twitter:title" content="PhpCmsV9后台GetShell">
 <meta name="twitter:description" content="###0x01 背景最近在做测试的时候遇到一个阉割版的phpcms，权限也很低。尝试网上的常规getshell手法无果，忽然想起16年和大佬一起挖过PhpCms_v9后台的getshell，但是过去这么久细节也记不清了。只记得大概方向。遂上官网下载了最新版本的源码审计一番。">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1574161-5e01edf142a9a8db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-    
-    
-    
-      <link rel="icon" type="image/x-icon" href="/favicon.png">
-    
-    <link rel="stylesheet" href="/css/uno.css">
-    <link rel="stylesheet" href="/css/highlight.css">
-    <link rel="stylesheet" href="/css/archive.css">
-    <link rel="stylesheet" href="/css/china-social-icon.css">
-
-</head>
-<body>
-
-    <span class="mobile btn-mobile-menu">
-        <i class="icon icon-list btn-mobile-menu__icon"></i>
-        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
-    </span>
-
-    
-
-<header class="panel-cover panel-cover--collapsed">
-
-
-  <div class="panel-main">
-
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2019/01/01/PhpCms_GetShell/index.html">
   
-    <div class="panel-main__inner panel-inverted">
-    <div class="panel-main__content">
-
-        
-        <a href="/" title="link to homepage for 拥雪待春色"><img src="/images/avatar.png" width="80" alt="拥雪待春色 logo" class="panel-cover__logo logo" /></a>
-        
-
-        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">拥雪待春色</a></h1>
-        <hr class="panel-cover__divider" />
-
-        
-
-        <div class="navigation-wrapper">
-
-          <nav class="cover-navigation cover-navigation--primary">
-            <ul class="navigation">
-
-              
-                
-                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
-              
-                
-                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
-              
-                
-                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
-              
-
-            </ul>
-          </nav>
-
-          <!-- ----------------------------
-To add a new social icon simply duplicate one of the list items from below
-and change the class in the <i> tag to match the desired social network
-and then add your link to the <a>. Here is a full list of social network
-classes that you can use:
-
-    icon-social-500px
-    icon-social-behance
-    icon-social-delicious
-    icon-social-designer-news
-    icon-social-deviant-art
-    icon-social-digg
-    icon-social-dribbble
-    icon-social-facebook
-    icon-social-flickr
-    icon-social-forrst
-    icon-social-foursquare
-    icon-social-github
-    icon-social-google-plus
-    icon-social-hi5
-    icon-social-instagram
-    icon-social-lastfm
-    icon-social-linkedin
-    icon-social-medium
-    icon-social-myspace
-    icon-social-path
-    icon-social-pinterest
-    icon-social-rdio
-    icon-social-reddit
-    icon-social-skype
-    icon-social-spotify
-    icon-social-stack-overflow
-    icon-social-steam
-    icon-social-stumbleupon
-    icon-social-treehouse
-    icon-social-tumblr
-    icon-social-twitter
-    icon-social-vimeo
-    icon-social-xbox
-    icon-social-yelp
-    icon-social-youtube
-    icon-social-zerply
-    icon-mail
-
--------------------------------->
-
-<!-- add social info here -->
+    <link rel="alternate" href="/atom.xml" title="拥雪待春色" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
 
 
-
-<nav class="cover-navigation navigation--social">
-  <ul class="navigation">
-
-    
-      <!-- Github -->
-      <li class="navigation__item">
-        <a href="https://github.com/wh0amis" title="Huno on GitHub">
-          <i class='icon icon-social-github'></i>
-          <span class="label">GitHub</span>
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/wh0amis" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
         </a>
-      </li>
-    
-
-    <!-- China social icon -->
-    <!--
-    
-      <li class="navigation__item">
-        <a href="" title="">
-          <i class='icon cs-icon-douban'></i>
-          <span class="label">Douban</span>
-        </a>
-      </li>
-
-      <li class="navigation__item">
-        <a href="" title="">
-          <i class='icon cs-icon-weibo'></i>
-          <span class="label">Weibo</span>
-        </a>
-      </li>
-
-    -->
-
-
-
-  </ul>
-</nav>
-
-
-
-        </div>
-
+        <h2 id="name" class="hidden-xs hidden-sm"></h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Rookie Information Security Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> ChengDu, China</small>
       </div>
+      
+      <div class="search" id="search-form-wrap">
 
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
     </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
 
-    <div class="panel-cover--overlay"></div>
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/wh0amis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
   </div>
 </header>
 
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner entry">
-            
-
-<article class="post-container post-container--single">
-
-  <header class="post-header">
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
     
-    <h1 class="post-title">PhpCmsV9后台GetShell</h1>
-
-    
-
-    <div class="post-meta">
-      <time datetime="2019-01-01" class="post-meta__date date">2019-01-01</time> 
-
-      <span class="post-meta__tags tags">
-
-          
-
-          
-             &#8226; 标签:
-            <font class="tags">
-              <a class="tags-link" href="/tags/代码审计/">代码审计</a>
-            </font>
-          
-
-      </span>
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
     </div>
-    
-    
+</div>
 
-  </header>
+    
+      
 
-  <section id="post-content" class="article-content post">
-    <p>###0x01 背景<br>最近在做测试的时候遇到一个阉割版的phpcms，权限也很低。尝试网上的常规getshell手法无果，忽然想起16年和大佬一起挖过PhpCms_v9后台的getshell，但是过去这么久细节也记不清了。只记得大概方向。遂上官网下载了最新版本的源码审计一番。<br><a id="more"></a><br>版本信息：<br><img src="https://upload-images.jianshu.io/upload_images/1574161-5e01edf142a9a8db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/asp-代码审计/">asp,代码审计</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码审计/">代码审计</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/效率/">效率</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/旅行/">旅行</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/注入/">注入</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/漏洞/">漏洞</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/漏洞-命令执行/">漏洞,命令执行</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/解密-工具/">解密,工具</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/asp-代码审计/" style="font-size: 13px;">asp,代码审计</a> <a href="/tags/代码审计/" style="font-size: 14px;">代码审计</a> <a href="/tags/效率/" style="font-size: 13px;">效率</a> <a href="/tags/旅行/" style="font-size: 13px;">旅行</a> <a href="/tags/注入/" style="font-size: 13px;">注入</a> <a href="/tags/漏洞/" style="font-size: 13px;">漏洞</a> <a href="/tags/漏洞-命令执行/" style="font-size: 13px;">漏洞,命令执行</a> <a href="/tags/爬虫/" style="font-size: 13px;">爬虫</a> <a href="/tags/解密-工具/" style="font-size: 13px;">解密,工具</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/07/29/FastJson漏洞复现测试/" class="title">FastJson漏洞复现测试</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-07-29T09:30:21.000Z" itemprop="datePublished">2019-07-29</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/07/23/Druid数据库连接池字符串解密/" class="title">Druid数据库连接池字符串解密Druid</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-07-23T09:14:41.000Z" itemprop="datePublished">2019-07-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/01/26/常见漏洞整改建议/" class="title">常见漏洞整改建议(长期更新)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-01-26T12:30:12.000Z" itemprop="datePublished">2019-01-26</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/01/01/PhpCms_GetShell/" class="title">PhpCmsV9后台GetShell</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-01-01T08:20:55.000Z" itemprop="datePublished">2019-01-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2018/11/30/miaozan_authkey/" class="title">对某PHP开源系统的一次粗略审计</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-11-30T02:06:55.000Z" itemprop="datePublished">2018-11-30</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-PhpCms_GetShell" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PhpCmsV9后台GetShell
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/01/01/PhpCms_GetShell/" class="article-date">
+	  <time datetime="2019-01-01T08:20:55.000Z" itemprop="datePublished">2019-01-01</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/代码审计/">代码审计</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/01/01/PhpCms_GetShell/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>###0x01 背景<br>最近在做测试的时候遇到一个阉割版的phpcms，权限也很低。尝试网上的常规getshell手法无果，忽然想起16年和大佬一起挖过PhpCms_v9后台的getshell，但是过去这么久细节也记不清了。只记得大概方向。遂上官网下载了最新版本的源码审计一番。<br><a id="more"></a><br>版本信息：<br><img src="https://upload-images.jianshu.io/upload_images/1574161-5e01edf142a9a8db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>###0x02 代码执行<br>后台Getshell最方便的还是代码执行，先上Seay大佬的代码审计工具搜索一下。寻找存在代码执行的位置在/phpcms/libs/functions/global.func.php第289-302行发现string2array()这个函数存在eval()。于是我们寻找一下那些位置调用了这个函数。<br><img src="https://upload-images.jianshu.io/upload_images/1574161-17fc6e6085af99ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br> 在/phpcms/modules/admin/site.php第169存在调用，但是$data变量的内容是从数据库来得，我们得找个地方将数据插入到数据表里去.<br><img src="https://upload-images.jianshu.io/upload_images/1574161-9d1cca0ddf89e984.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>###0x03 Getshell<br>在后台模块-数据源中可以自定义我们的SQL，从而导致我们可以将恶意构造的数据插入到数据表去，然后进行利用getshell。具体步骤为 模块-&gt;数据源-&gt;添加数据源-&gt;自定义SQL ，然后插入我们的SQL，最后访问执行，这里提供可触发上述漏洞的SQL语句：</p>
 <blockquote>
@@ -235,63 +333,230 @@ classes that you can use:
 <p>如图所示:<br><img src="https://upload-images.jianshu.io/upload_images/1574161-7a8dada7782679ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800" alt=""><br>访问调用代码下方的URL地址<br><img src="https://upload-images.jianshu.io/upload_images/1574161-21b66602da7d6afe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800" alt=""><br>访问调用代码之后再回到系统设置，点击站点管理，点击修改即可Getshell<br><img src="https://upload-images.jianshu.io/upload_images/1574161-d91ec89168cf0a4e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800" alt=""><br><img src="https://upload-images.jianshu.io/upload_images/1574161-58d9ab068264d78c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800" alt=""></p>
 <p>###0x03 后言<br>通过全局搜索可以发现系统多处都调用了string2array()这个函数，所以在后台通过string2array这个函数来拿shell还是很简单的。</p>
 
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2019/01/01/PhpCms_GetShell/" title="PhpCmsV9后台GetShell" target="_blank" rel="external">http://yoursite.com/2019/01/01/PhpCms_GetShell/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/wh0amis" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/wh0amis" target="_blank"><span class="text-dark"></span><small class="ml-1x">Rookie Information Security Engineer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
   </section>
 
-  <section class="post-comments">
 
-    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
     
-</section>
-
-
-</article>
-
-
-            <footer class="footer">
-
-    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    <li class="prev">
+      <a href="/2019/01/26/常见漏洞整改建议/" title="常见漏洞整改建议(长期更新)"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
     
-</footer>
+    
+    <li class="next">
+      <a href="/2018/11/30/miaozan_authkey/" title="对某PHP开源系统的一次粗略审计"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/wh0amis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
         </div>
     </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+<!-- 防盗链 -->
+var link = "" ;
+// 遍历所有的img标签
+$("img").each( (i,o) => {
+	var o = $(o);
+    // 判断图片的链接是否包含sinaimg关键字
+	if( o.attr("src").indexOf("jianshu") > 0 ){
+        // 给这个标签加上referrerPlicy属性
+		o.attr("referrerpolicy","no-referrer");
+        // 备份图片的src
+		link = o.attr("src");
+        // 重新设置src，让页面重新加载一次图片
+		o.attr("src",link);
+	}
+});
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
 
-    <!-- js files -->
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/scale.fix.js"></script>
-    
-
-    
-
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript"> 
-        $(document).ready(function(){
-            MathJax.Hub.Config({ 
-                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
-            });
-        });
-    </script>
-
-
-    
-
-    <script src="/js/awesome-toc.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $.awesome_toc({
-                overlay: true,
-                contentId: "post-content",
-            });
-        });
-    </script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
 
 
-    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273829933'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/stat.php%3Fid%3D1273829933%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+
+
+   
+
+
+
+
+   
     
-    <!--kill ie6 -->
-<!--[if IE 6]>
-  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
-<![endif]-->
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
 
 </body>
 </html>
